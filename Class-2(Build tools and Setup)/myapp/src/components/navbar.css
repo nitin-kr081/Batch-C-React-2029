@@ -1,0 +1,63 @@
+/* Amazon-inspired Navbar Styles */
+.navbar {
+    background-color: #131921; /* Amazon Dark Navy */
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    gap: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 60px;
+  }
+  
+  .nav-logo {
+    color: #ff9900; /* Amazon Gold */
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+  }
+  
+  .nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px 10px;
+    border: 1px solid transparent; /* Prevents "jumping" on hover */
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  
+  /* The Amazon Hover Effect */
+  .nav-link:hover, .nav-logo:hover {
+    border: 1px solid #ffffff;
+  }
+  
+  /* Optional: Search Bar Style */
+  .nav-search {
+    display: flex;
+    flex-grow: 1; /* Makes search bar take up available space */
+    height: 40px;
+  }
+  
+  .nav-search input {
+    width: 100%;
+    border: none;
+    padding: 0 10px;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+  }
+  
+  .nav-search button {
+    background-color: #febd69; /* Lighter Amazon Gold */
+    border: none;
+    width: 45px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .nav-search button:hover {
+    background-color: #f3a847;
+  }
