@@ -1,40 +1,54 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "./Banner";
 import MovieCard from "./MovieCard";
 import axios from "axios";
-
+import Pagination from "./Pagination";
 function Movies() {
+  const [movies, setMovies] = useState([]);
+  const [pageNo, setPageNo] = useState(1);
+
+  function incrementPage() {
+    setPageNo(pageNo + 1);
+  }
+
+  function decrementPage() {
+    if (pageNo >= 2) {
+      setPageNo(pageNo - 1);
+    }
+  }
+
   // Now get the movies data
   useEffect(() => {
     async function getMOvies() {
-      let data = await axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=3aec63790d50f3b9fc2efb4c15a8cf99&language=en-US&page=1`
+      let response = await axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=3aec63790d50f3b9fc2efb4c15a8cf99&language=en-US&page=${pageNo}`
       );
-
-      console.log(data)
+      console.log(response.data.results);
+      setMovies(response.data.results);
     }
 
     getMOvies();
-  }, []);
+  }, [pageNo]);
 
   return (
     <div>
       <Banner />
       <div
-        className=" mt-10 flex gap-4 flex-wrap justify-evenly 
+        className="m-10 flex gap-4 flex-wrap justify-evenly 
       "
       >
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        {movies.map((movie) => {
+          return (
+            <MovieCard movieTitle={movie.title} posterUrl={movie.poster_path} />
+          );
+        })}
       </div>
+
+      <Pagination
+        decrementPage={decrementPage}
+        incrementPage={incrementPage}
+        pageNumber={pageNo}
+      />
     </div>
   );
 }
