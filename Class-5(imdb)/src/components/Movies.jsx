@@ -5,16 +5,15 @@ import axios from "axios";
 import Pagination from "./Pagination";
 function Movies() {
   const [movies, setMovies] = useState([]);
-  const [pageNo, setPageNo] = useState(1);
+  const [pageNo , setPageNo] = useState(1)
 
-  function incrementPage() {
-    setPageNo(pageNo + 1);
+
+  function decrementPage(){
+    setPageNo(pageNo-1)
   }
 
-  function decrementPage() {
-    if (pageNo >= 2) {
-      setPageNo(pageNo - 1);
-    }
+  function incrementPage(){
+    setPageNo(pageNo+1)
   }
 
   // Now get the movies data
@@ -44,11 +43,7 @@ function Movies() {
         })}
       </div>
 
-      <Pagination
-        decrementPage={decrementPage}
-        incrementPage={incrementPage}
-        pageNumber={pageNo}
-      />
+      <Pagination decrementPage={decrementPage} incrementPage={incrementPage} pageNumber={pageNo}/>
     </div>
   );
 }
